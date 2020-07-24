@@ -15,7 +15,7 @@ public class Subscription {
 
     @Id
     private Long id;
-    private Instant createdAt;
+//    private Instant createdAt;
     private String email;
 
 }
