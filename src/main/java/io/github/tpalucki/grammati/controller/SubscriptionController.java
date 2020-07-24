@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
@@ -27,5 +28,10 @@ public class SubscriptionController {
     public String processSubscription(@Validated Subscription subscription) {
         emailService.sendConfirmationEmail(subscription.getEmail());
         return "confirmPage";
+    }
+
+    @GetMapping("/confirmation/{id}")
+    public String confirmSubscription(@PathVariable(name = "id") String confirmationId) {
+        return "subscriptionConfirmedPage";
     }
 }
