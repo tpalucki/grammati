@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Grammati</title>
+    <link rel="stylesheet" th:href="@{/styles.css}"/>
+</head>
+<body>
+<form th:object="${excercise}" method="POST">
+    <h1 th:text="${excercise.question}">EMPTY</h1>
+    <div th:each="answer : ${excercise.answers}">
+        <input name="answers" type="radio" th:value="${answer}"/>
+        <span th:text="${answer}">ANSWER</span>
+        <br/>
+    </div>
+    <button>Answer</button>
+</form>
+</body>
+</html>
