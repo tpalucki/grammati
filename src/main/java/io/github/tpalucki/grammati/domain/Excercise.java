@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -21,8 +18,11 @@ public class Excercise {
     @GeneratedValue
     private Long id;
     private String question;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> answers;
     private String tip;
 
+    public String formattedTip() {
+        return "TIP: " + tip;
+    }
 }

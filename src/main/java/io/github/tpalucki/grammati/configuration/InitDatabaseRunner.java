@@ -42,5 +42,9 @@ public class InitDatabaseRunner implements CommandLineRunner {
         excercise.setAnswers(List.of("want", "'m wanting"));
         excercise.setTip("We use the present simple with stative verbs.");
         excerciseRespository.save(excercise);
+
+        for (Excercise item : excerciseRespository.findAll()) {
+            log.info(item.toString());
+        }
     }
 }
