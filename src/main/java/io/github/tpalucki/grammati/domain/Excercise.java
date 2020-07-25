@@ -1,8 +1,9 @@
 package io.github.tpalucki.grammati.domain;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -12,7 +13,8 @@ import java.util.List;
 
 @Data
 @Entity
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 public class Excercise {
 
     @Id
@@ -21,4 +23,6 @@ public class Excercise {
     private String question;
     @ElementCollection
     private List<String> answers;
+    private String tip;
+
 }
