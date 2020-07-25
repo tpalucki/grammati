@@ -4,6 +4,7 @@ import io.github.tpalucki.grammati.domain.Excercise;
 import io.github.tpalucki.grammati.service.ExcerciseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -20,6 +20,12 @@ import java.util.Optional;
 public class ExcerciseController {
 
     private final ExcerciseService excerciseService;
+
+    @GetMapping("/excercises/random")
+    public String getRandomExcercise(Model model) {
+        model.addAttribute("excercise", excerciseService.getRandomExcercise().get());
+        return "excercise";
+    }
 
     @GetMapping("/excercises/{id}")
     public String getExcercise(@PathVariable("id") String id, Model model) {
@@ -32,8 +38,8 @@ public class ExcerciseController {
         return "excercise";
     }
 
-    @PostMapping("/excercises/{id}")
-    public String handleAnswer(@PathVariable("id") String id, @Validated Excercise answer, Model model) {
+    @PostMapping(value = {"/excercises/random", "/excercises/{id}"})
+    public String handleAnswer(@PathVariable("id") @Nullable String id, @Validated Excercise answer, Model model) {
         // TODO refactor
 //        Excercise excercise = new Excercise();
 //        excercise.setQuestion("Is it sth new?");
