@@ -19,14 +19,14 @@
         </li>
     </ul>
 </nav>
-<h1>Subscribe for Grammati for early access!</h1>
-<form method="POST" th:object="${subscription}">
-    <div>
-        <h3>Put your email for packet of daily excercises:</h3>
-        <input type="email" th:field="*{email}"/>
+<div class="container my-5">
+    <h1>Subscribe Grammati for early access!</h1>
+    <form method="POST" th:object="${subscription}" class="form-group">
+        <label for="email" class="lead">Leave us your email to receive a daily packet of excercises:</label>
+        <input id="email" type="email" th:field="*{email}" placeholder="Enter email" class="form-control form-control-lg"/>
         <br/>
-        <button>Subscribe</button>
-    </div>
-</form>
+        <button type="submit" class="btn btn-success btn-lg">Subscribe</button>
+    </form>
+</div>
 </body>
 </html>
