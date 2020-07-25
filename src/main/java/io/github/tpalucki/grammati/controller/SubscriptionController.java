@@ -1,5 +1,6 @@
 package io.github.tpalucki.grammati.controller;
 
+import io.github.tpalucki.grammati.configuration.AppConfig;
 import io.github.tpalucki.grammati.domain.Subscription;
 import io.github.tpalucki.grammati.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
@@ -18,22 +19,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class SubscriptionController {
 
     private final SubscriptionService subscriptionService;
+    private final AppConfig appConfig;
 
     @GetMapping
     public String subscribeForm(Model model) {
+        model.addAttribute("title", appConfig.getAppTitle());
         model.addAttribute("subscription", new Subscription());
         return "mainPage";
     }
 
     @PostMapping
-    public String subscribe(@Validated Subscription subscription, Errors errors) {
+    public String subscribe(@Validated Subscription subscription, Errors errors, Model model) {
         log.info("Received subscription request: " + subscription);
         subscriptionService.subscribe(subscription);
+        model.addAttribute("title", appConfig.getAppTitle());
         return "confirmPage";
     }
 
     @GetMapping("/confirmation/{id}")
-    public String confirmSubscription(@PathVariable(name = "id") String confirmationId) {
+    public String confirmSubscription(@PathVariable(name = "id") String confirmationId, Model model) {
+        model.addAttribute("title", appConfig.getAppTitle());
         return "subscriptionConfirmedPage";
     }
 }
