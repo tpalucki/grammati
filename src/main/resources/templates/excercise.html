@@ -19,15 +19,18 @@
         </li>
     </ul>
 </nav>
-<form th:object="${excercise}" method="POST">
-    <h1 th:text="${excercise.question}">EMPTY</h1>
-    <div th:each="answer : ${excercise.answers}" class="form-check">
-        <label class="form-check-label">
-            <input name="answers" type="radio" class="form-check-input" th:value="${answer}"/><span th:text="${answer}">ANSWER</span>
-        </label>
-        <br/>
-    </div>
-    <button type="submit" class="btn btn-success">Answer</button>
-</form>
+<div class="container my-5">
+    <form th:object="${excercise}" method="POST">
+        <h1 th:text="${excercise.question}">QUESTION</h1>
+        <div th:each="answer : ${excercise.answers}" class="form-check mb-1">
+            <label class="form-check-label">
+                <input name="answers" type="radio" class="form-check-input" th:value="${answer}"/><span
+                    th:text="${answer}">ANSWER</span>
+            </label>
+            <br/>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg mt-2">Answer</button>
+    </form>
+</div>
 </body>
 </html>

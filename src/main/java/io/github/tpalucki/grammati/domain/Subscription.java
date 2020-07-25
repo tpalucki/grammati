@@ -13,11 +13,12 @@ import javax.persistence.Id;
 @RequiredArgsConstructor
 //@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 public class Subscription {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     //    private Instant createdAt;
     private String email;
+    private boolean enabled;
 
 }
