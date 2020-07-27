@@ -23,7 +23,7 @@ public class SubscriptionController {
 
     @GetMapping
     public String subscribeForm(Model model) {
-        model.addAttribute("title", appConfig.getAppTitle());
+        addCommonAttributes(model);
         model.addAttribute("subscription", new Subscription());
         return "mainPage";
     }
@@ -32,13 +32,17 @@ public class SubscriptionController {
     public String subscribe(@Validated Subscription subscription, Errors errors, Model model) {
         log.info("Received subscription request: " + subscription);
         subscriptionService.subscribe(subscription);
-        model.addAttribute("title", appConfig.getAppTitle());
+        addCommonAttributes(model);
         return "confirmPage";
     }
 
     @GetMapping("/confirmation/{id}")
     public String confirmSubscription(@PathVariable(name = "id") String confirmationId, Model model) {
-        model.addAttribute("title", appConfig.getAppTitle());
+        addCommonAttributes(model);
         return "subscriptionConfirmedPage";
+    }
+
+    private void addCommonAttributes(Model model) {
+        model.addAttribute("title", appConfig.getAppTitle());
     }
 }

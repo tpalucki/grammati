@@ -1,5 +1,6 @@
 package io.github.tpalucki.grammati.controller;
 
+import io.github.tpalucki.grammati.configuration.AppConfig;
 import io.github.tpalucki.grammati.domain.Excercise;
 import io.github.tpalucki.grammati.service.ExcerciseService;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +21,11 @@ import java.util.Optional;
 public class ExcerciseController {
 
     private final ExcerciseService excerciseService;
+    private final AppConfig appConfig;
 
     @GetMapping("/excercises/random")
     public String getRandomExcercise(Model model) {
+        model.addAttribute("title", appConfig.getAppTitle());
         model.addAttribute("excercise", excerciseService.getRandomExcercise().get());
         return "excercise";
     }
@@ -34,6 +37,7 @@ public class ExcerciseController {
             model.addAttribute("message", "Excercise not found");
             return "error";
         }
+        model.addAttribute("title", appConfig.getAppTitle());
         model.addAttribute("excercise", excerciseOptional.get());
         return "excercise";
     }
@@ -46,6 +50,7 @@ public class ExcerciseController {
 //        excercise.setAnswers(List.of("First", "Second", "Third", "Fourth"));
 //
 //        model.addAttribute("excercise", excercise);
+        model.addAttribute("title", appConfig.getAppTitle());
         return "excercise";
     }
 }

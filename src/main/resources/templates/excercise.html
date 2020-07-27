@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Grammati</title>
+    <title th:text="${title}">TITLE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/styles.css}"/>
@@ -15,7 +15,7 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
         <li class="nav-item active">
-            <a class="nav-link" href="#">Grammati</a>
+            <a class="nav-link" href="#" th:text="${title}">TITLE</a>
         </li>
     </ul>
 </nav>
@@ -30,7 +30,7 @@
             </label>
             <br/>
         </div>
-        <button type="submit" class="btn btn-success btn-lg mt-2">Answer</button>
+        <button type="submit" class="btn btn-success btn-lg mt-2">Check</button>
     </form>
 </div>
 </body>
