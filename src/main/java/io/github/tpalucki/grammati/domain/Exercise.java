@@ -12,7 +12,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Excercise {
+public class Exercise {
 
     @Id
     @GeneratedValue
