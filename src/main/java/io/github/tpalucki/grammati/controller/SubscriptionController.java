@@ -23,26 +23,26 @@ public class SubscriptionController {
 
     @GetMapping
     public String subscribeForm(Model model) {
-        addCommonAttributes(model);
+        log.info("GET /");
+        model.addAttribute("title", appConfig.getAppTitle());
         model.addAttribute("subscription", new Subscription());
         return "mainPage";
     }
 
     @PostMapping
     public String subscribe(@Validated Subscription subscription, Errors errors, Model model) {
+        log.info("POST /");
         log.info("Received subscription request: " + subscription);
         subscriptionService.subscribe(subscription);
-        addCommonAttributes(model);
+        model.addAttribute("title", appConfig.getAppTitle());
         return "confirmPage";
     }
 
     @GetMapping("/confirmation/{id}")
     public String confirmSubscription(@PathVariable(name = "id") String confirmationId, Model model) {
-        addCommonAttributes(model);
+        log.info("GET /confirmation/" + confirmationId);
+        model.addAttribute("title", appConfig.getAppTitle());
         return "subscriptionConfirmedPage";
     }
 
-    private void addCommonAttributes(Model model) {
-        model.addAttribute("title", appConfig.getAppTitle());
-    }
 }

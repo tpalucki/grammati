@@ -5,7 +5,6 @@ import io.github.tpalucki.grammati.domain.LearningSession;
 import io.github.tpalucki.grammati.service.LearningSessionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +23,8 @@ public class DailySessionController {
     // mamy zwrocic strone z pierwszym cwiczeniem
     // albo strone z wiadomoscia "NIe ma takiego cwiczenie"
     // albo strone z wiadomoscia "Wykonales juz wszystkie cwiczenia na dzis"
-    @GetMapping(value = "/daily/{sessionId}}")
-    public String getDailySession(@PathVariable("sessionId") @NonNull String sessionId, Model model) {
+    @GetMapping("/daily/{sessionId}")
+    public String getDailySession(@PathVariable("sessionId") String sessionId, Model model) {
         log.info("GET /daily/" + sessionId);
 
         model.addAttribute("title", appConfig.getAppTitle());
