@@ -42,7 +42,7 @@ public class ExerciseController {
             return "error";
         }
         model.addAttribute("title", appConfig.getAppTitle());
-        model.addAttribute("exercise", questionOptional.get());
+        model.addAttribute("question", questionOptional.get());
         return "exercise";
     }
 
