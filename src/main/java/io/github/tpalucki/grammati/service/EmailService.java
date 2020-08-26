@@ -11,7 +11,6 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
-    // TODO fill the email properly
     public void sendConfirmationEmail(String email) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("noreply@grammati.com");
@@ -24,5 +23,15 @@ public class EmailService {
 
     public boolean isOn() {
         return false;
+    }
+
+    public void sendDailyQuiz(String to, String quizId) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("daily-quiz@grammati.com");
+        message.setTo(to);
+        message.setSubject("Your daily quiz");
+        message.setText("Your daily quiz http://localhost:8080/exercises/" + quizId);
+
+        mailSender.send(message);
     }
 }

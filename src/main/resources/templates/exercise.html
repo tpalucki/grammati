@@ -24,10 +24,10 @@
     </ul>
 </nav>
 <div class="container my-5">
-    <form th:object="${exercise}" method="POST">
-        <h1 th:text="${exercise.question}">QUESTION</h1>
-        <p th:text="${exercise.formattedTip()}"></p>
-        <div th:each="answer : ${exercise.answers}" class="form-check mb-1">
+    <form th:object="${question}" method="POST">
+        <h1 th:text="${question.question}">QUESTION</h1>
+        <p th:text="${question.formattedTip()}"></p>
+        <div th:each="answer : ${question.answers}" class="form-check mb-1">
             <label class="form-check-label">
                 <input name="answers" type="radio" class="form-check-input" th:value="${answer}"/><span
                     th:text="${answer}">ANSWER</span>

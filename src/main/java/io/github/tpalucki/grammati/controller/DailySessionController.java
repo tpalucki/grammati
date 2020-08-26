@@ -1,8 +1,8 @@
 package io.github.tpalucki.grammati.controller;
 
 import io.github.tpalucki.grammati.configuration.AppConfig;
-import io.github.tpalucki.grammati.domain.LearningSession;
-import io.github.tpalucki.grammati.service.LearningSessionService;
+import io.github.tpalucki.grammati.domain.Quiz;
+import io.github.tpalucki.grammati.service.QuizService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class DailySessionController {
 
-    private final LearningSessionService dailySessionService;
+    private final QuizService quizService;
     private final AppConfig appConfig;
 
     // mamy zwrocic strone z pierwszym cwiczeniem
@@ -29,19 +29,19 @@ public class DailySessionController {
 
         model.addAttribute("title", appConfig.getAppTitle());
 
-        LearningSession learningSession = dailySessionService.getLearningSession(sessionId);
-        if (learningSession.isCompleted()) {
+        Quiz quiz = quizService.getLearningSession(sessionId);
+        if (quiz.isCompleted()) {
             model.addAttribute("message", "You have completed your daily exercises");
             return "infoPage";
         }
 
-        if (Objects.isNull(learningSession)) {
+        if (Objects.isNull(quiz)) {
             model.addAttribute("message", "No exercise for you today");
             return "infoPage";
         }
 
-        Long exerciseId = learningSession.nextExerciseId();
-        dailySessionService.update(learningSession);
+        Long exerciseId = quiz.nextExerciseId();
+        quizService.update(quiz);
         return "forward:/exercises/" + exerciseId;
     }
 }

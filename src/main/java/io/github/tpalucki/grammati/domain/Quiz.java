@@ -11,13 +11,13 @@ import java.util.List;
 @Builder
 @Entity
 @Data
-public class LearningSession {
+public class Quiz {
 
     @Id
     @GeneratedValue
     private Long id;
     @NonNull
-    private String sessionHash;
+    private String sessionId;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Long> exercises = new LinkedList<>();
 

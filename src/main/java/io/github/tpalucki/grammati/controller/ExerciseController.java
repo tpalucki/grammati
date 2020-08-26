@@ -1,7 +1,7 @@
 package io.github.tpalucki.grammati.controller;
 
 import io.github.tpalucki.grammati.configuration.AppConfig;
-import io.github.tpalucki.grammati.domain.Exercise;
+import io.github.tpalucki.grammati.domain.Question;
 import io.github.tpalucki.grammati.service.ExerciseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,33 +20,35 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ExerciseController {
 
-    private final ExerciseService exerciseService;
+    private final ExerciseService questionService;
     private final AppConfig appConfig;
 
-    @GetMapping("/exercises/random")
-    public String getRandomExercise(Model model) {
-        log.info("GET /exercises/random");
-        model.addAttribute("title", appConfig.getAppTitle());
-        model.addAttribute("exercise", exerciseService.getRandomExercise().get());
-        return "exercise";
-    }
+    // TODO this is not essentiaal for MVP
+//    @GetMapping("/questions/random")
+//    public String getRandomExercise(Model model) {
+//        log.info("GET /exercises/random");
+//        model.addAttribute("title", appConfig.getAppTitle());
+//        model.addAttribute("exercise", questionService.getRandomExercise().get());
+//        return "exercise";
+//    }
 
-    @GetMapping("/exercises/{id}")
+
+    @GetMapping("/questions/{id}")
     public String getExercise(@PathVariable("id") String id, Model model) {
-        log.info("GET /exercises/" + id);
-        Optional<Exercise> exerciseOptional = exerciseService.getExerciseForId(id);
-        if (exerciseOptional.isEmpty()) {
-            model.addAttribute("message", "Exercise not found");
+        log.info("GET /questions/" + id);
+        Optional<Question> questionOptional = questionService.getQuestionForId(id);
+        if (questionOptional.isEmpty()) {
+            model.addAttribute("message", "Question not found");
             return "error";
         }
         model.addAttribute("title", appConfig.getAppTitle());
-        model.addAttribute("exercise", exerciseOptional.get());
+        model.addAttribute("exercise", questionOptional.get());
         return "exercise";
     }
 
-    @PostMapping("/exercises/{id}")
-    public String handleAnswer(@PathVariable("id") @Nullable String id, @Validated Exercise answer, Model model) {
-        log.info("POST /exercises/" + id);
+    @PostMapping("/questions/{id}")
+    public String handleAnswer(@PathVariable("id") @Nullable String id, @Validated Question answer, Model model) {
+        log.info("POST /questions/" + id);
 
         model.addAttribute("title", appConfig.getAppTitle());
         return "exercise";

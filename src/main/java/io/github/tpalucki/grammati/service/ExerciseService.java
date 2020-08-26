@@ -1,6 +1,6 @@
 package io.github.tpalucki.grammati.service;
 
-import io.github.tpalucki.grammati.domain.Exercise;
+import io.github.tpalucki.grammati.domain.Question;
 import io.github.tpalucki.grammati.repository.ExerciseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,11 @@ public class ExerciseService {
 
     private final ExerciseRepository exerciseRepository;
 
-    public Optional<Exercise> getExerciseForId(String id) {
+    public Optional<Question> getQuestionForId(String id) {
         return Optional.of(exerciseRepository.findAll().iterator().next());
     }
 
-    public Optional<Exercise> getRandomExercise() {
+    public Optional<Question> getRandomExercise() {
         return StreamSupport.stream(exerciseRepository.findAll().spliterator(), false).findAny();
     }
 }

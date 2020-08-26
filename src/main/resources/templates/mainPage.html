@@ -26,7 +26,7 @@
 <div class="container my-5">
     <h1>Subscribe <span th:text="${title}">TITLE</span> for early access!</h1>
     <form method="POST" th:object="${subscription}" class="form-group">
-        <label for="email" class="lead">Leave us your email to receive a daily packet of exercises:</label>
+        <label for="email" class="lead">Leave us your email to receive a daily packet of questions:</label>
         <input id="email" type="email" th:field="*{email}" placeholder="Enter email"
                class="form-control form-control-lg"/>
         <br/>
