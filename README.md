@@ -21,3 +21,11 @@
 
 ### Use case 1
 App loads all users, for each user it picks 5 questions, stores the set id, and sends it via email.
+
+### Use case 2
+User clicks on the link provided in email.
+User is redirected to daily question page
+User is printed all questions on one page
+User answers all question
+Clicks on Ok or Submit
+Result page is printed

@@ -20,6 +20,13 @@ public class DailySessionController {
     private final QuizService quizService;
     private final AppConfig appConfig;
 
+    @GetMapping("/daily")
+    public String endpointAvailable(Model model) {
+        log.info("GET /daily");
+        model.addAttribute("message", "Endpoint available");
+        return "message"; // TODO forward to message page
+    }
+
     // mamy zwrocic strone z pierwszym cwiczeniem
     // albo strone z wiadomoscia "NIe ma takiego cwiczenie"
     // albo strone z wiadomoscia "Wykonales juz wszystkie cwiczenia na dzis"
