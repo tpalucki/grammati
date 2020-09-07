@@ -22,10 +22,7 @@ public class Quiz {
     private List<Long> exercises = new LinkedList<>();
 
     public Long nextExerciseId() {
-        return exercises.remove(0);
+        return exercises.isEmpty() ? null : exercises.remove(0);
     }
 
-    public boolean isCompleted() {
-        return exercises.isEmpty();
-    }
 }

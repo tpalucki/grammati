@@ -24,18 +24,21 @@
     </ul>
 </nav>
 <div class="container my-5">
-    <form th:object="${question}" method="POST">
+    <form action="#" th:action="@{/quiz}" th:object="${formAnswer}" method="post">
         <h1 th:text="${question.question}">QUESTION</h1>
         <p th:text="${question.formattedTip()}"></p>
-        <div th:each="answer : ${question.answers}" class="form-check mb-1">
+        <div th:each="questionAnswer : ${question.answers}" class="form-check mb-1">
             <label class="form-check-label">
-                <input name="answers" type="radio" class="form-check-input" th:value="${answer}"/><span
-                    th:text="${answer}">ANSWER</span>
+                <input name="answer" type="radio" class="form-check-input" th:value="${questionAnswer}"/><span
+                    th:text="${questionAnswer}">ANSWER</span>
             </label>
             <br/>
         </div>
+        <input type="hidden" name="quizReference" th:value="${quizReference}">
+        <input type="hidden" name="questionReference" th:value="${questionReference}">
         <button type="submit" class="btn btn-success btn-lg mt-2">Check</button>
     </form>
 </div>
+
 </body>
 </html>
