@@ -1,5 +1,7 @@
 # Grammati application
 
+[GET /quiz/a](http://localhost:8080/quiz/a)
+
 ## Steps to achieve MVC
 
 1) Generate application stat boots up
