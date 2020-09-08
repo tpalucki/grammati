@@ -11,6 +11,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script>
+        function showTip() {
+            document.getElementById("tip-button").style.display = "none";
+            document.getElementById("tip-para").style.display = "block";
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -26,7 +33,14 @@
 <div class="container my-5">
     <form action="#" th:action="@{/quiz}" th:object="${formAnswer}" method="post">
         <h1 th:text="${question.question}">QUESTION</h1>
-        <p th:text="${question.formattedTip()}"></p>
+
+        <div class="section-tip">
+            <button type="button" onclick="showTip()" class="btn btn-info btn-sm" id="tip-button">Show tip</button>
+            <div class="alert alert-info tip" id="tip-para">
+                <p th:text="${question.formattedTip()}"></p>
+            </div>
+        </div>
+
         <div th:each="questionAnswer : ${question.answers}" class="form-check mb-1">
             <label class="form-check-label">
                 <input name="answer" type="radio" class="form-check-input" th:value="${questionAnswer}"/><span
@@ -36,7 +50,10 @@
         </div>
         <input type="hidden" name="quizReference" th:value="${quizReference}">
         <input type="hidden" name="questionReference" th:value="${questionReference}">
-        <button type="submit" class="btn btn-success btn-lg mt-2">Check</button>
+
+        <div class="section-button-submit">
+            <button type="submit" class="btn btn-success btn-lg mt-2">Check</button>
+        </div>
     </form>
 </div>
 

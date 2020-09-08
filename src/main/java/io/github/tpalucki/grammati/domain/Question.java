@@ -23,6 +23,6 @@ public class Question {
     private String tip;
 
     public String formattedTip() {
-        return "TIP: " + tip;
+        return "Tip: " + tip;
     }
 }

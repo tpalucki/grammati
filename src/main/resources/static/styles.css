@@ -1,0 +1,15 @@
+.tip {
+    display: none;
+}
+
+.tip p {
+    margin-bottom: 0;
+}
+
+.section-tip {
+    margin: 20px 0;
+}
+
+.section-button-submit {
+    margin-top: 20px;
+}
