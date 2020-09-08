@@ -32,7 +32,18 @@
 </nav>
 <div class="container my-5">
     <form action="#" th:action="@{/quiz}" th:object="${formAnswer}" method="post">
-        <h1 th:text="${question.question}">QUESTION</h1>
+<!--        <h2 th:text="${question.question}">QUESTION</h2>-->
+        <h2>She goes / is going to the gym twice a week.</h2>
+
+        <h2>She <i>goes</i> / <i>is going</i> to the gym twice a week.</h2>
+
+        <h2>She <u>goes</u> / <u>is going</u> to the gym twice a week.</h2>
+
+        <h2>She <mark>goes</mark> / <mark>is going</mark> to the gym twice a week.</h2>
+
+        <h2>She __________ to the gym twice a week.</h2>
+
+        <h2>She .......... to the gym twice a week.</h2>
 
         <div class="section-tip">
             <button type="button" onclick="showTip()" class="btn btn-info btn-sm" id="tip-button">Show tip</button>
