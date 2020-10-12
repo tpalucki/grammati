@@ -16,7 +16,7 @@ public class EmailService {
         message.setFrom("noreply@grammati.com");
         message.setTo(email);
         message.setSubject("Grammati: Please confirm your subscription");
-        message.setText("Thanks for subscribing to Grammati. From now you will be receiving daily english exercises. To confirm this subscription please click below:\nConfirm\nGrammati Team");
+        message.setText("Thanks for subscribing to Grammati. From now you will be receiving daily english questions. To confirm this subscription please click below:\nConfirm\nGrammati Team");
 
         mailSender.send(message);
     }

@@ -5,7 +5,7 @@ import lombok.*;
 @Data
 @ToString
 @RequiredArgsConstructor
-public class Answer {
+public class AnswerDto {
 
     private String quizReference;
     private Long questionReference;

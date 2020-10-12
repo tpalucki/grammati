@@ -1,7 +1,7 @@
 package io.github.tpalucki.grammati.controller;
 
 import io.github.tpalucki.grammati.configuration.AppConfig;
-import io.github.tpalucki.grammati.domain.Answer;
+import io.github.tpalucki.grammati.domain.AnswerDto;
 import io.github.tpalucki.grammati.domain.Question;
 import io.github.tpalucki.grammati.domain.Quiz;
 import io.github.tpalucki.grammati.exception.QuizNotFoundException;
@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -43,53 +42,56 @@ public class QuizController {
             throw new QuizNotFoundException("Cannot find quiz with id: " + quizReference);
         }
 
-        Long exerciseId = quiz.nextExerciseId();
-        if (exerciseId == null) {
-            model.addAttribute("message", "That is all for today, well done!");
-            model.addAttribute("title", appConfig.getAppTitle());
-            return "message";
-        }
+//        Long exerciseId = quiz.nextExerciseId();
+//        if (exerciseId == null) {
+//            model.addAttribute("message", "That is all for today, well done!");
+//            model.addAttribute("title", appConfig.getAppTitle());
+//            return "message";
+//        }
 
-        quizRepository.save(quiz);
-        Question question = questionRepository.findById(exerciseId).orElseThrow(() -> new IllegalArgumentException("Question not exists"));
+        Question question = quiz.getQuestions().iterator().next();
 
-        Answer answer = new Answer();
+//        quizRepository.save(quiz);
+//        Question question = questionRepository.findById(exerciseId).orElseThrow(() -> new IllegalArgumentException("Question not exists"));
+
+        AnswerDto answerDto = new AnswerDto();
 
         model.addAttribute("question", question);
         model.addAttribute("quizReference", quizReference);
-        model.addAttribute("questionReference", exerciseId);
-        model.addAttribute("formAnswer", answer);
+        model.addAttribute("questionReference", question.getId());
+        model.addAttribute("formAnswer", answerDto);
         model.addAttribute("title", appConfig.getAppTitle());
 
         return "quizView";
     }
 
     @PostMapping()
-    public String handleAnswer(Answer answer, Model model) throws QuizNotFoundException {
-        log.info("POST /quiz {}", answer);
+    public String handleAnswer(AnswerDto answerDto, Model model) throws QuizNotFoundException {
+        log.info("POST /quiz {}", answerDto);
 
-        var quizReference = answer.getQuizReference();
+        var quizReference = answerDto.getQuizReference();
         var quiz = quizRepository.findQuizBySessionId(quizReference);
 
         if (quiz == null) {
             throw new QuizNotFoundException("Cannot find quiz with id: " + quizReference);
         }
 
-        var exerciseId = quiz.nextExerciseId();
-        if (exerciseId == null) {
-            model.addAttribute("message", "That is all for today, well done!");
-            model.addAttribute("title", appConfig.getAppTitle());
-            return "message";
-        }
+//        var exerciseId = quiz.nextExerciseId();
+//        if (exerciseId == null) {
+//            model.addAttribute("message", "That is all for today, well done!");
+//            model.addAttribute("title", appConfig.getAppTitle());
+//            return "message";
+//        }
 
-        this.quizRepository.save(quiz);
+//        this.quizRepository.save(quiz);
 
-        var question = questionRepository.findById(exerciseId).orElseThrow(() -> new IllegalArgumentException("Question not exists"));
+//        var question = questionRepository.findById(exerciseId).orElseThrow(() -> new IllegalArgumentException("Question not exists"));
+        var question = quiz.getQuestions().iterator().next();
 
         model.addAttribute("question", question);
         model.addAttribute("quizReference", quizReference);
-        model.addAttribute("questionReference", exerciseId);
-        model.addAttribute("formAnswer", new Answer());
+        model.addAttribute("questionReference", question.getId());
+        model.addAttribute("formAnswer", new AnswerDto());
         model.addAttribute("title", appConfig.getAppTitle());
 
         return "quizView";

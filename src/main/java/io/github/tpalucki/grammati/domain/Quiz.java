@@ -3,8 +3,8 @@ package io.github.tpalucki.grammati.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,13 +16,16 @@ public class Quiz {
     @Id
     @GeneratedValue
     private Long id;
+
     @NonNull
     private String sessionId;
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<Long> exercises = new LinkedList<>();
 
-    public Long nextExerciseId() {
-        return exercises.isEmpty() ? null : exercises.remove(0);
-    }
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "quiz")
+//    @ElementCollection(fetch = FetchType.LAZY, )
+    private Set<Question> questions = new HashSet<>();
+
+//    public Long nextExerciseId() {
+//        return questions.isEmpty() ? null : questions.remove(0);
+//    }
 
 }
