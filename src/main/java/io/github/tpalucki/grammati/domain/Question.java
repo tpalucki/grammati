@@ -1,6 +1,5 @@
 package io.github.tpalucki.grammati.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,21 +16,20 @@ import java.util.Set;
 @AllArgsConstructor
 public class Question {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id @GeneratedValue private Long id;
 
-    private String question;
+  private String question;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<QuestionAnswer> answers = new HashSet<>();
+  //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+  @OneToMany(fetch = FetchType.LAZY)
+  private Set<Answer> answers = new HashSet<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Quiz quiz;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Quiz quiz;
 
-    private String tip;
+  private String tip;
 
-    public String formattedTip() {
-        return "Tip: " + tip;
-    }
+  public String formattedTip() {
+    return "Tip: " + tip;
+  }
 }

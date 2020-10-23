@@ -1,4 +1,4 @@
-package io.github.tpalucki.grammati.domain;
+package io.github.tpalucki.grammati.domain.dto;
 
 import lombok.*;
 

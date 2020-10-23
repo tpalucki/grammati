@@ -1,7 +1,7 @@
 package io.github.tpalucki.grammati.controller;
 
 import io.github.tpalucki.grammati.configuration.AppConfig;
-import io.github.tpalucki.grammati.domain.AnswerDto;
+import io.github.tpalucki.grammati.domain.dto.AnswerDto;
 import io.github.tpalucki.grammati.domain.Question;
 import io.github.tpalucki.grammati.domain.Quiz;
 import io.github.tpalucki.grammati.exception.QuizNotFoundException;

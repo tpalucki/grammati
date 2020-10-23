@@ -10,7 +10,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(exclude="question")
 @ToString
 @Entity
-public class QuestionAnswer {
+public class Answer {
 
     @Id
     @GeneratedValue
