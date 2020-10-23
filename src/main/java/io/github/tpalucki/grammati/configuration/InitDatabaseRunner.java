@@ -7,9 +7,6 @@ import io.github.tpalucki.grammati.repository.AnswerRepository;
 import io.github.tpalucki.grammati.repository.ExerciseRepository;
 import io.github.tpalucki.grammati.repository.QuizRepository;
 import io.github.tpalucki.grammati.repository.SubscriptionRepository;
-import io.github.tpalucki.grammati.repository.example.CarRepository;
-import io.github.tpalucki.grammati.repository.example.EngineRepository;
-import io.github.tpalucki.grammati.repository.example.TyreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -25,59 +22,10 @@ public class InitDatabaseRunner implements CommandLineRunner {
   private final QuizRepository quizRepository;
   private final AnswerRepository answerRepository;
 
-  private final EngineRepository engineRepository;
-  private final CarRepository carRepository;
-  private final TyreRepository tyreRepository;
-
   @Override
   public void run(String... args) {
     initQuestionsDb();
-    //    initExampleDb();
   }
-
-  //  private void initExampleDb() {
-  //    var engine = new Engine();
-  //    engine.setModel("14C");
-  //    // w tej linicje zostanie zapisany obiekt jako nowy wiersz do bazy - zostanie wygenerowane
-  // ID
-  //    engineRepository.save(engine);
-  //
-  //    // tutaj modyfikujemy obiekt (istnieje juz w bazie) a wiec zostanie zrobiony update danego
-  //    // obiektu w bazie
-  //    engine.setModel("10A");
-  //    var returnedEngine = engineRepository.save(engine);
-  //
-  //    var engine2 = new Engine();
-  //    engine2.setModel("R2D2 V8");
-  //    // tutaj jest nowy obiekt wiec zapiszemy go do bazy jako nowy wiersz, nowe Id zostanie
-  //    // wygenerowane
-  //    engineRepository.save(engine2);
-  //
-  //    var car = new Car();
-  //    car.setModel("Mustang");
-  //    car.setEngine(engine2);
-  //    carRepository.save(car);
-  //
-  //    var car2 = new Car();
-  //    car.setModel("Opel Astra");
-  //    car.setEngine(engine);
-  //    carRepository.save(car2);
-  //
-  //    // w przypadku zapisu drugi raz tego samego samochodu nic nie bedzie wstawione do bazy -
-  //    // zostanie wykonany tylko select zeby zachować kontrakt i zwrócić pijazd "zapisany"
-  //    carRepository.save(car2);
-  //
-  //    var tyre1 = new Tyre("Kenda");
-  //    var tyre2 = new Tyre("Michelin");
-  //    var tyre3 = new Tyre("Daytona");
-  //    var tyre4 = new Tyre("Pirelli");
-  //
-  //    var tyres = List.of(tyre1, tyre2, tyre3, tyre4);
-  //    tyreRepository.saveAll(tyres);
-  //
-  //    car.getTyres().addAll(List.of(tyre1, tyre2, tyre3, tyre4));
-  //    carRepository.save(car);
-  //  }
 
   private void initQuestionsDb() {
     // question 1
@@ -164,15 +112,15 @@ public class InitDatabaseRunner implements CommandLineRunner {
     question4.setAnswers(Set.of(qa7, qa8));
     exerciseRepository.save(question4);
 
-//    for (Question item : exerciseRepository.findAll()) {
-//      log.info(item.toString());
-//    }
-//
-//    Quiz quiz =
-//        Quiz.builder()
-//            .sessionId("a")
-//            .questions(Set.of(question, question2, question3, question4))
-//            .build();
-//    log.info(quizRepository.save(quiz).toString());
+    //    for (Question item : exerciseRepository.findAll()) {
+    //      log.info(item.toString());
+    //    }
+    //
+    //    Quiz quiz =
+    //        Quiz.builder()
+    //            .sessionId("a")
+    //            .questions(Set.of(question, question2, question3, question4))
+    //            .build();
+    //    log.info(quizRepository.save(quiz).toString());
   }
 }

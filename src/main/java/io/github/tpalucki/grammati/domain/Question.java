@@ -12,6 +12,7 @@ import java.util.Set;
 @Data
 @EqualsAndHashCode(exclude = {"answers", "quiz"})
 @Entity
+@Table(name = "QUESTION")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Question {
@@ -20,7 +21,6 @@ public class Question {
 
   private String question;
 
-  //    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @OneToMany(fetch = FetchType.LAZY)
   private Set<Answer> answers = new HashSet<>();
 
