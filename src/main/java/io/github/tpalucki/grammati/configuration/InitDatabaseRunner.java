@@ -10,6 +10,7 @@ import io.github.tpalucki.grammati.repository.SubscriptionRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -27,7 +28,8 @@ public class InitDatabaseRunner implements CommandLineRunner {
     initQuestionsDb();
   }
 
-  private void initQuestionsDb() {
+  @Transactional
+  public void initQuestionsDb() {
     // question 1
     var question = new Question();
     question.setQuestion("She goes/is going to the gym twice a week.");
@@ -116,11 +118,11 @@ public class InitDatabaseRunner implements CommandLineRunner {
     //      log.info(item.toString());
     //    }
     //
-    //    Quiz quiz =
-    //        Quiz.builder()
-    //            .sessionId("a")
-    //            .questions(Set.of(question, question2, question3, question4))
-    //            .build();
-    //    log.info(quizRepository.save(quiz).toString());
+    Quiz quiz =
+        Quiz.builder()
+            .sessionId("a")
+            .questions(Set.of(question, question2, question3, question4))
+            .build();
+    log.info(quizRepository.save(quiz).toString());
   }
 }

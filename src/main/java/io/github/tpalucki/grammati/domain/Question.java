@@ -1,9 +1,6 @@
 package io.github.tpalucki.grammati.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,6 +8,7 @@ import java.util.Set;
 
 @Data
 @EqualsAndHashCode(exclude = {"answers", "quiz"})
+@ToString(exclude = "answers")
 @Entity
 @Table(name = "QUESTION")
 @NoArgsConstructor
@@ -24,8 +22,8 @@ public class Question {
   @OneToMany(fetch = FetchType.LAZY)
   private Set<Answer> answers = new HashSet<>();
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  private Quiz quiz;
+//  @ManyToOne(fetch = FetchType.LAZY)
+//  private Quiz quiz;
 
   private String tip;
 

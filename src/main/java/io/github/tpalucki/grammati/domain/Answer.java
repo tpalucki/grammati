@@ -2,11 +2,13 @@ package io.github.tpalucki.grammati.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(exclude = "question")
+@ToString(exclude = "question")
 @Entity
 @Table(name = "ANSWER")
 public class Answer {
