@@ -28,10 +28,10 @@
         <div th:each="question: ${questions}">
             <h1 th:text="${question.question}">QUESTION</h1>
             <p th:text="${question.formattedTip()}"></p>
-            <div th:each="answer : ${question.answers}" class="form-check mb-1">
+            <div th:each="answerDto : ${question.answers}" class="form-check mb-1">
                 <label class="form-check-label">
-                    <input name="answers" type="radio" class="form-check-input" th:value="${answer}"/><span
-                        th:text="${answer}">ANSWER</span>
+                    <input name="answers" type="radio" class="form-check-input" th:value="${answerDto}"/><span
+                        th:text="${answerDto}">ANSWER</span>
                 </label>
                 <br/>
             </div>
@@ -40,10 +40,10 @@
 
             <!--        <h1 th:text="${question1.question}">QUESTION</h1>-->
             <!--        <p th:text="${question1.formattedTip()}"></p>-->
-            <!--        <div th:each="answer : ${question1.answers}" class="form-check mb-1">-->
+            <!--        <div th:each="answerDto : ${question1.answers}" class="form-check mb-1">-->
             <!--            <label class="form-check-label">-->
             <!--                <input name="answers" type="radio" class="form-check-input" th:value="${answer1}"/><span-->
-            <!--                    th:text="${answer}">ANSWER</span>-->
+            <!--                    th:text="${answerDto}">ANSWER</span>-->
             <!--            </label>-->
             <!--            <br/>-->
             <!--        </div>-->
@@ -51,10 +51,10 @@
 
             <!--        <h1 th:text="${question2.question}">QUESTION</h1>-->
             <!--        <p th:text="${question2.formattedTip()}"></p>-->
-            <!--        <div th:each="answer : ${question2.answers}" class="form-check mb-1">-->
+            <!--        <div th:each="answerDto : ${question2.answers}" class="form-check mb-1">-->
             <!--            <label class="form-check-label">-->
             <!--                <input name="answers" type="radio" class="form-check-input" th:value="${answer2}"/><span-->
-            <!--                    th:text="${answer}">ANSWER</span>-->
+            <!--                    th:text="${answerDto}">ANSWER</span>-->
             <!--            </label>-->
             <!--            <br/>-->
             <!--        </div>-->
@@ -62,10 +62,10 @@
 
             <!--        <h1 th:text="${question3.question}">QUESTION</h1>-->
             <!--        <p th:text="${question3.formattedTip()}"></p>-->
-            <!--        <div th:each="answer : ${question3.answers}" class="form-check mb-1">-->
+            <!--        <div th:each="answerDto : ${question3.answers}" class="form-check mb-1">-->
             <!--            <label class="form-check-label">-->
             <!--                <input name="answers" type="radio" class="form-check-input" th:value="${answer3}"/><span-->
-            <!--                    th:text="${answer}">ANSWER</span>-->
+            <!--                    th:text="${answerDto}">ANSWER</span>-->
             <!--            </label>-->
             <!--            <br/>-->
             <!--        </div>-->
@@ -73,10 +73,10 @@
 
             <!--        <h1 th:text="${question4.question}">QUESTION</h1>-->
             <!--        <p th:text="${question4.formattedTip()}"></p>-->
-            <!--        <div th:each="answer : ${question4.answers}" class="form-check mb-1">-->
+            <!--        <div th:each="answerDto : ${question4.answers}" class="form-check mb-1">-->
             <!--            <label class="form-check-label">-->
             <!--                <input name="answers" type="radio" class="form-check-input" th:value="${answer4}"/><span-->
-            <!--                    th:text="${answer}">ANSWER</span>-->
+            <!--                    th:text="${answerDto}">ANSWER</span>-->
             <!--            </label>-->
             <!--            <br/>-->
             <!--        </div>-->

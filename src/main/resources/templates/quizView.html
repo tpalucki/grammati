@@ -43,7 +43,7 @@
 
         <div th:each="questionAnswer : ${question.answers}" class="form-check mb-1">
             <label class="form-check-label">
-                <input name="answer" type="radio" class="form-check-input" th:value="${questionAnswer}"/><span
+                <input name="answerDto" type="radio" class="form-check-input" th:value="${questionAnswer}"/><span
                     th:text="${questionAnswer}">ANSWER</span>
             </label>
             <br/>

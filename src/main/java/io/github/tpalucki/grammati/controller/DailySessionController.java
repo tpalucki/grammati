@@ -2,7 +2,6 @@ package io.github.tpalucki.grammati.controller;
 
 import io.github.tpalucki.grammati.configuration.AppConfig;
 import io.github.tpalucki.grammati.domain.Question;
-import io.github.tpalucki.grammati.domain.ADto;
 import io.github.tpalucki.grammati.domain.Quiz;
 import io.github.tpalucki.grammati.repository.ExerciseRepository;
 import io.github.tpalucki.grammati.service.QuizService;
@@ -45,7 +44,7 @@ public class DailySessionController {
 
         Quiz quiz = quizService.getLearningSession(sessionId);
 //        if (quiz.isCompleted()) {
-//            model.addAttribute("message", "You have completed your daily exercises");
+//            model.addAttribute("message", "You have completed your daily questions");
 //            return "message";
 //        }
 
@@ -54,12 +53,13 @@ public class DailySessionController {
             return "message";
         }
 
-        List<Long> exercises = quiz.getExercises();
+//        List<Long> exercises = quiz.getQuestions();
+//
+//        Question question1 = exerciseRepository.findById(exercises.get(0)).get();
+//        Question question2 = exerciseRepository.findById(exercises.get(1)).get();
+//        Question question3 = exerciseRepository.findById(exercises.get(2)).get();
+//        Question question4 = exerciseRepository.findById(exercises.get(3)).get();
 
-        Question question1 = exerciseRepository.findById(exercises.get(0)).get();
-        Question question2 = exerciseRepository.findById(exercises.get(1)).get();
-        Question question3 = exerciseRepository.findById(exercises.get(2)).get();
-        Question question4 = exerciseRepository.findById(exercises.get(3)).get();
 
 //        model.addAttribute("question1", question1);
 //        model.addAttribute("question2", question2);
@@ -68,7 +68,8 @@ public class DailySessionController {
 
 
 //        ADto quizDto = ADto.builder().questions(List.of(question1, question2, question3, question4)).build();
-        model.addAttribute("questions", List.of(question1, question2, question3, question4));
+//        model.addAttribute("questions", List.of(question1, question2, question3, question4));
+        model.addAttribute("questions", quiz.getQuestions());
 
         return "quiz";
     }

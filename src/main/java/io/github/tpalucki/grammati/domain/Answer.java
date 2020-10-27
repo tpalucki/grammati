@@ -1,13 +1,24 @@
 package io.github.tpalucki.grammati.domain;
 
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+import javax.persistence.*;
 
 @Data
-@ToString
-@RequiredArgsConstructor
+@EqualsAndHashCode(exclude = "question")
+@ToString(exclude = "question")
+@Entity
+@Table(name = "ANSWER")
 public class Answer {
 
-    private String quizReference;
-    private Long questionReference;
-    private String answer;
+  @Id @GeneratedValue private Long id;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  private Question question;
+
+  private String answerText;
+
+  private boolean correct;
 }

@@ -26,7 +26,7 @@ public class ExerciseController {
     // TODO this is not essentiaal for MVP
 //    @GetMapping("/questions/random")
 //    public String getRandomExercise(Model model) {
-//        log.info("GET /exercises/random");
+//        log.info("GET /questions/random");
 //        model.addAttribute("title", appConfig.getAppTitle());
 //        model.addAttribute("exercise", questionService.getRandomExercise().get());
 //        return "exercise";
