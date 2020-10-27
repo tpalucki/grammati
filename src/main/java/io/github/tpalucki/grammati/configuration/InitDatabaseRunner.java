@@ -114,10 +114,6 @@ public class InitDatabaseRunner implements CommandLineRunner {
     question4.setAnswers(Set.of(qa7, qa8));
     exerciseRepository.save(question4);
 
-    //    for (Question item : exerciseRepository.findAll()) {
-    //      log.info(item.toString());
-    //    }
-    //
     Quiz quiz =
         Quiz.builder()
             .sessionId("a")
