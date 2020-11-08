@@ -1,6 +1,7 @@
 package io.github.tpalucki.grammati.controller;
 
 import io.github.tpalucki.grammati.configuration.AppConfig;
+import io.github.tpalucki.grammati.domain.UserAnswer;
 import io.github.tpalucki.grammati.domain.dto.AnswerDto;
 import io.github.tpalucki.grammati.domain.Question;
 import io.github.tpalucki.grammati.domain.Quiz;
@@ -50,7 +51,7 @@ public class QuizController {
       return "message";
     }
 
-    Question question = questions .iterator().next();
+    Question question = questions.iterator().next();
 
     //        quizRepository.save(quiz);
     //        Question question = questionRepository.findById(exerciseId).orElseThrow(() -> new
@@ -73,6 +74,9 @@ public class QuizController {
 
     var quizReference = answerDto.getQuizReference();
     var quiz = quizRepository.findQuizBySessionId(quizReference);
+
+    UserAnswer userAnswer = new UserAnswer(123123123L, answerDto);
+//    log.info("Received answer: " + userAnswer);
 
     if (quiz == null) {
       throw new QuizNotFoundException("Cannot find quiz with id: " + quizReference);

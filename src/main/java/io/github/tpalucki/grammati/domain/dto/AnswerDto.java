@@ -7,7 +7,8 @@ import lombok.*;
 @RequiredArgsConstructor
 public class AnswerDto {
 
-    private String quizReference;
-    private Long questionReference;
-    private String answer;
+  private String quizReference;
+  private Long questionReference;
+  private Long answerId;
+  private String answer;
 }
