@@ -39,13 +39,13 @@ public class InitDatabaseRunner implements CommandLineRunner {
     Answer qa1 = new Answer();
     qa1.setAnswerText("goes");
     qa1.setCorrect(true);
-    qa1.setQuestion(question);
+//    qa1.setQuestion(question);
     answerRepository.save(qa1);
 
     Answer qa2 = new Answer();
     qa2.setAnswerText("is going");
     qa2.setCorrect(false);
-    qa2.setQuestion(question);
+//    qa2.setQuestion(question);
     answerRepository.save(qa2);
 
     question.setAnswers(Set.of(qa1, qa2));
@@ -60,13 +60,13 @@ public class InitDatabaseRunner implements CommandLineRunner {
     Answer qa3 = new Answer();
     qa3.setAnswerText("boils");
     qa3.setCorrect(true);
-    qa3.setQuestion(question2);
+//    qa3.setQuestion(question2);
     answerRepository.save(qa3);
 
     Answer qa4 = new Answer();
     qa4.setAnswerText("is boiling");
     qa4.setCorrect(false);
-    qa4.setQuestion(question2);
+//    qa4.setQuestion(question2);
     answerRepository.save(qa4);
 
     question2.setAnswers(Set.of(qa3, qa4));
@@ -81,13 +81,13 @@ public class InitDatabaseRunner implements CommandLineRunner {
     Answer qa5 = new Answer();
     qa5.setAnswerText("works");
     qa5.setCorrect(true);
-    qa5.setQuestion(question3);
+//    qa5.setQuestion(question3);
     answerRepository.save(qa5);
 
     var qa6 = new Answer();
     qa6.setAnswerText("is working");
     qa6.setCorrect(false);
-    qa6.setQuestion(question3);
+//    qa6.setQuestion(question3);
     answerRepository.save(qa6);
 
     question3.setAnswers(Set.of(qa5, qa6));
@@ -102,13 +102,13 @@ public class InitDatabaseRunner implements CommandLineRunner {
     Answer qa7 = new Answer();
     qa7.setAnswerText("want");
     qa7.setCorrect(true);
-    qa7.setQuestion(question4);
+//    qa7.setQuestion(question4);
     answerRepository.save(qa7);
 
     Answer qa8 = new Answer();
     qa8.setAnswerText("'m wanting");
     qa8.setCorrect(false);
-    qa8.setQuestion(question4);
+//    qa8.setQuestion(question4);
     answerRepository.save(qa8);
 
     question4.setAnswers(Set.of(qa7, qa8));

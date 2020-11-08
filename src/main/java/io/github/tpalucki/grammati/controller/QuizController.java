@@ -31,7 +31,7 @@ public class QuizController {
   private final QuizRepository quizRepository;
   private final ExerciseRepository questionRepository;
 
-  @GetMapping("/{quizReference}")
+  @GetMapping(value = "/{quizReference}")
   public String showQuestion(@PathVariable("quizReference") String quizReference, Model model)
       throws QuizNotFoundException {
     log.info("GET /quiz/{}", quizReference);

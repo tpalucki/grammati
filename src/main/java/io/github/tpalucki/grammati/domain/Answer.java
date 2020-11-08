@@ -15,8 +15,8 @@ public class Answer {
 
   @Id @GeneratedValue private Long id;
 
-  @ManyToOne(fetch = FetchType.EAGER)
-  private Question question;
+//  @ManyToOne(fetch = FetchType.EAGER)
+//  private Question question;
 
   private String answerText;
 
