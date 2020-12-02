@@ -1,0 +1,1 @@
+INSERT INTO QUIZ (id, reference) VALUES ('1', 'abc');
