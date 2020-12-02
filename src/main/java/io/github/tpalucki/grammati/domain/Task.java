@@ -11,11 +11,11 @@ public class Task {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long taskId;
     private String question;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "quiz_id", nullable = false)
     private Quiz quiz;
 
 }
