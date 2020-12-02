@@ -2,10 +2,9 @@ package io.github.tpalucki.grammati.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "quiz")
@@ -14,7 +13,9 @@ public class Quiz {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long quizId;
     private String reference;
 
+    @OneToMany
+    private Set<Task> tasks = new HashSet<>();
 }
