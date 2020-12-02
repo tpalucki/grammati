@@ -1,4 +1,4 @@
-package io.github.tpalucki.grammati.configuration;
+package io.github.tpalucki.grammati.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
