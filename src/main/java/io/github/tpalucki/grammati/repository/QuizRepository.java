@@ -1,11 +1,8 @@
 package io.github.tpalucki.grammati.repository;
 
 import io.github.tpalucki.grammati.domain.Quiz;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository
-public interface QuizRepository extends CrudRepository<Quiz, Long> {
+public interface QuizRepository extends JpaRepository<Quiz, Long> {
 
-    Quiz findQuizBySessionId(String sessionId);
 }

@@ -1,5 +1,8 @@
 # Grammati application
 
+## Docs
+[http://localhost:8080/swagger-ui/](http://localhost:8080/swagger-ui/)
+
 [GET /quiz/a](http://localhost:8080/quiz/a)
 
 ## Steps to achieve MVC

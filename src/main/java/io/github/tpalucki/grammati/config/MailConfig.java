@@ -1,4 +1,4 @@
-package io.github.tpalucki.grammati.configuration;
+package io.github.tpalucki.grammati.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

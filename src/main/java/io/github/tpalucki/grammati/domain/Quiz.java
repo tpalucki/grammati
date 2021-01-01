@@ -1,26 +1,21 @@
 package io.github.tpalucki.grammati.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
+@Table(name = "quiz")
 @Data
 public class Quiz {
 
-  @Id @GeneratedValue private Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String reference;
 
-  @NonNull private String sessionId;
-
-  @OneToMany(fetch = FetchType.LAZY)
-  private Set<Question> questions = new HashSet<>();
+    @OneToMany(mappedBy = "quiz")
+    private List<Task> tasks = new ArrayList<>();
 }
