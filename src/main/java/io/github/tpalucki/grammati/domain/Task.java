@@ -1,6 +1,8 @@
 package io.github.tpalucki.grammati.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -11,7 +13,7 @@ public class Task {
 
     @Id
     @GeneratedValue
-    private Long taskId;
+    private Long id;
     private String question;
 
     @ManyToOne

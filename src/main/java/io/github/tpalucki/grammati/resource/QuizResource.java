@@ -20,4 +20,5 @@ public class QuizResource {
     public List<Quiz> getAllQuizzes() {
         return quizRepository.findAll();
     }
+
 }
