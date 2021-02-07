@@ -1,14 +1,22 @@
+DROP TABLE IF EXISTS quiz;
+DROP TABLE IF EXISTS question;
+DROP TABLE IF EXISTS answer;
 
-CREATE TABLE IF NOT EXISTS quiz (
-    quiz_id SERIAL,
-    reference VARCHAR,
-    PRIMARY KEY quiz_id
+CREATE TABLE quiz
+(
+    quiz_id   SERIAL PRIMARY KEY NOT NULL,
+    sessionId VARCHAR
+);
+
+CREATE TABLE question
+(
+    task_id  SERIAL PRIMARY KEY NOT NULL,
+    question VARCHAR
+);
+
+CREATE TABLE answer
+(
+    answer_id   SERIAL PRIMARY KEY NOT NULL,
+    answer_text VARCHAR,
+    correct     BOOLEAN
 )
-
-CREATE TABLE IF NOT EXISTS task {
-    task_id SERIAL,
-    quiz_id INTEGER
-    question VARCHAR,
-    PRIMARY KEY task_id,
-    FOREIGN KEY references quiz.quiz_id
-}
