@@ -10,7 +10,7 @@ CREATE TABLE quiz
 
 CREATE TABLE question
 (
-    task_id  SERIAL PRIMARY KEY NOT NULL,
+    question_id  SERIAL PRIMARY KEY NOT NULL,
     question VARCHAR
 );
 

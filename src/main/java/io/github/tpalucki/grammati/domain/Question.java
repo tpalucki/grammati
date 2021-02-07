@@ -8,15 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "quiz")
+@Table(name = "question")
 @Data
-public class Quiz {
+public class Question {
 
     @Id
     @GeneratedValue
-    private Long quizId;
-    private String sessionId;
+    private Long questionId;
+    private String question;
 
-//    @OneToMany(mappedBy = "quiz")
-//    private List<Question> tasks = new ArrayList<>();
+//    @ManyToOne
+//    @JoinColumn(name = "quiz_id", nullable = false)
+//    private Quiz quiz;
+
 }
