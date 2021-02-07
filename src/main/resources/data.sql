@@ -1,5 +1,10 @@
-INSERT INTO quiz (id, reference) VALUES ('1', 'abc');
+INSERT INTO quiz (session_id)
+VALUES ('abc');
 
-INSERT INTO task (id, question) VALUES ('1', 'How are you?');
+INSERT INTO question (question)
+VALUES ('How are you?');
 
--- INSERT INTO quiz_tasks (quiz_id, tasks_id) VALUES ('1', '1')
+INSERT INTO answer (answer_text, correct)
+VALUES ('Fine, thank you', true),
+       ('Not so bad', false),
+       ('Could be better, nut thanks', false);

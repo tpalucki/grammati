@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS answer;
 CREATE TABLE quiz
 (
     quiz_id   SERIAL PRIMARY KEY NOT NULL,
-    sessionId VARCHAR
+    session_id VARCHAR
 );
 
 CREATE TABLE question
