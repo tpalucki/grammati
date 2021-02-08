@@ -1,5 +1,8 @@
 INSERT INTO quiz (session_id)
-VALUES ('abc');
+VALUES ('abc'),
+       ('cde'),
+       ('def'),
+       ('efg');
 
 INSERT INTO question (question)
 VALUES ('How are you?');
