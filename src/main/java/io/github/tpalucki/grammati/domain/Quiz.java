@@ -2,10 +2,9 @@ package io.github.tpalucki.grammati.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "quiz")
@@ -13,10 +12,10 @@ import javax.persistence.Table;
 public class Quiz {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long quizId;
     private String sessionId;
 
-//    @OneToMany(mappedBy = "quiz")
-//    private List<Question> tasks = new ArrayList<>();
+    @OneToMany(mappedBy = "quiz", fetch = FetchType.EAGER)
+    private List<Question> questions = new ArrayList<>();
 }
