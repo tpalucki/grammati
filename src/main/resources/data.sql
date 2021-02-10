@@ -4,13 +4,13 @@ VALUES ('abc'),
        ('def'),
        ('efg');
 
-INSERT INTO question (question, quiz_id)
-VALUES ('How are you?', 1),
-       ('How much do you weight?', 1),
-       ('How high are you?', 1);
+INSERT INTO question (question)
+VALUES ('How are you?'),
+       ('How much do you weight?'),
+       ('How high are you?');
 
-INSERT INTO answer (answer_text, correct)
-VALUES ('Fine, thank you', TRUE),
-       ('Not so bad', FALSE),
-       ('Could be better, nut thanks', FALSE),
-       ('I am 1.8m tall', FALSE);
+INSERT INTO answer (answer_text, correct, question_id)
+VALUES ('Fine, thank you', TRUE, 1),
+       ('Not so bad', FALSE, 1),
+       ('Could be better, nut thanks', FALSE, 1),
+       ('I am 1.8m tall', FALSE, 1);
