@@ -24,4 +24,12 @@ public class Question {
     @EqualsAndHashCode.Exclude
     private List<Quiz> quizzes;
 
+    @OneToMany(
+            mappedBy = "question",
+            fetch = FetchType.EAGER
+    )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<Answer> answers;
+
 }

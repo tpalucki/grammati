@@ -16,7 +16,11 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
 
+    private String answerText;
+    private boolean correct;
+
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
     @JsonIgnore
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
