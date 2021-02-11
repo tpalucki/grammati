@@ -16,6 +16,14 @@ public class Quiz {
     private Long quizId;
     private String sessionId;
 
-    @OneToMany(mappedBy = "quiz", fetch = FetchType.EAGER)
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL
+    )
+    @JoinTable(
+            name = "quiz_to_questions",
+            joinColumns = {@JoinColumn(name = "quiz_id")},
+            inverseJoinColumns = {@JoinColumn(name = "question_id")}
+    )
     private List<Question> questions = new ArrayList<>();
 }

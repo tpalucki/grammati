@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "question")
@@ -17,11 +18,10 @@ public class Question {
     private Long questionId;
     private String question;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "quiz_id")
+    @ManyToMany(mappedBy = "questions")
     @JsonIgnore
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Quiz quiz;
+    private List<Quiz> quizzes;
 
 }
