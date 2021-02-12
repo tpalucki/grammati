@@ -4,11 +4,11 @@ VALUES ('abc'),
        ('def'),
        ('efg');
 
-INSERT INTO question (question)
-VALUES ('How are you?'),
-       ('How much do you weight?'),
-       ('How high are you?'),
-       ('What are the odds?');
+INSERT INTO question (question, tip_eng, tip_pl)
+VALUES ('How are you?', 'I dont have anything special for you', 'Radź sobie sam!'),
+       ('How much do you weight?', null, null),
+       ('How high are you?', null, null),
+       ('What are the odds?', null, null);
 
 INSERT INTO answer (answer_text, correct, question_id)
 VALUES ('Fine, thank you', TRUE, 1),

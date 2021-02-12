@@ -7,9 +7,9 @@ DROP TABLE IF EXISTS quiz;
 CREATE TABLE question
 (
     question_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
---     quiz_id     INTEGER NOT NULL,
-    question    VARCHAR
---     CONSTRAINT fk_quiz FOREIGN KEY (quiz_id) REFERENCES quiz (quiz_id)
+    question    VARCHAR,
+    tip_pl      VARCHAR,
+    tip_eng     VARCHAR
 );
 
 CREATE TABLE answer
