@@ -13,11 +13,18 @@ VALUES ('How are you?'),
 INSERT INTO answer (answer_text, correct, question_id)
 VALUES ('Fine, thank you', TRUE, 1),
        ('Not so bad', FALSE, 1),
-       ('Could be better, nut thanks', TRUE, 2),
-       ('I am 1.8m tall', FALSE, 2);
+       ('100 kg', TRUE, 2),
+       ('I dont know', FALSE, 2);
 
 INSERT INTO quiz_to_questions (quiz_id, question_id)
 VALUES (1, 1),
        (1, 2),
        (2, 3),
        (2, 4);
+
+
+-- INSERT INTO quiz_to_questions (quiz_id, question_id)
+-- VALUES (1, 1),
+--        (1, 2),
+--        (1, 3),
+--        (1, 4);
