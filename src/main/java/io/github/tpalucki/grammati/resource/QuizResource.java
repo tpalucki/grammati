@@ -1,12 +1,12 @@
 package io.github.tpalucki.grammati.resource;
 
 import io.github.tpalucki.grammati.domain.Quiz;
+import io.github.tpalucki.grammati.domain.UserAnswer;
+import io.github.tpalucki.grammati.repository.AnswerRepository;
 import io.github.tpalucki.grammati.repository.QuizRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +15,11 @@ import java.util.List;
 public class QuizResource {
 
     private final QuizRepository quizRepository;
+    private final AnswerRepository answerRepository;
+
+    // TODO plural nouns in paths
+    // TODO api version in paths
+    // TODO validation of the post body
 
     @GetMapping(path = "/api/quiz")
     @ResponseBody
@@ -26,5 +31,11 @@ public class QuizResource {
     @ResponseBody
     public Quiz getQuizBySessionId(@PathVariable String id) {
         return quizRepository.findBySessionId(id);
+    }
+
+    @PostMapping(path = "/api/answer", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserAnswer handleAnswer(@RequestBody UserAnswer answer) {
+        return answerRepository.save(answer);
     }
 }
