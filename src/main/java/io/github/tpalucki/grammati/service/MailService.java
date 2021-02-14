@@ -1,6 +1,10 @@
 package io.github.tpalucki.grammati.service;
 
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.util.ast.Node;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -8,28 +12,46 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MailService {
 
     private final JavaMailSender mailSender;
+    private final Parser markdownParser;
+    private final HtmlRenderer markdownHtmlRenderer;
 
     void sendSubscriptionConfirmationl(String email, String name) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@grammati.com");
-        message.setTo(email);
-        message.setSubject("Confirm your subscription for Gramilka");
-        message.setText(
-                "Hi " + name + "!\n" +
-                        "Thanks for subscribing to Gramilka.\n" +
-                        "From now on you will be receiving daily english questions.\n" +
-                        "To confirm this subscription please click below:\n" +
-                        "Confirm\n" +
-                        "\n" +
-                        "Gramilka Team");
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
 
-        mailSender.send(message);
+        try {
+            helper.setFrom("noreply@grammati.com");
+            helper.setSubject("Confirm your subscription for Gramilka");
+            helper.setTo(email);
+            helper.setValidateAddresses(true);
+
+            String htmlMessage = provideHtmlMessage(name);
+            helper.setText(htmlMessage, true);
+
+            mailSender.send(mimeMessage);
+        } catch (MessagingException | IOException e) {
+            log.error("Cannot sent subscription confirmation email");
+        }
+    }
+
+    private String provideHtmlMessage(String name) throws IOException {
+        String tempalate = this.getClass().getClassLoader().getResource("./templates/subscriptionConfirmation.md").getFile();
+
+        String templateContent = Files.readString(Paths.get(tempalate));
+        templateContent = templateContent.replace("{{name}}", name);
+
+        Node document = markdownParser.parse(templateContent);
+        return markdownHtmlRenderer.render(document);
     }
 
     public boolean isOn() {

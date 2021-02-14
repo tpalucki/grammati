@@ -59,5 +59,7 @@ CREATE TABLE subscription
     subscription_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name            VARCHAR,
     email           VARCHAR,
-    active          BOOLEAN
+    active          BOOLEAN,
+    reference       VARCHAR,
+    created_at       TIMESTAMP
 )
