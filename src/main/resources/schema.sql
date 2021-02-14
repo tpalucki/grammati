@@ -10,7 +10,9 @@ CREATE TABLE question
     question_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     question    VARCHAR,
     tip_pl      VARCHAR,
-    tip_eng     VARCHAR
+    tip_eng     VARCHAR,
+    level       VARCHAR,
+    topic       VARCHAR
 );
 
 CREATE TABLE answer
@@ -45,7 +47,7 @@ CREATE TABLE user_answer
     quiz_id        INTEGER,
     session_id     VARCHAR,
     question_id    INTEGER,
-    question_text   VARCHAR,
+    question_text  VARCHAR,
     answer_id      INTEGER,
     answer_text    VARCHAR,
     correct        BOOLEAN
