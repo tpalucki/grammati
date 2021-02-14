@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS answer;
 DROP TABLE IF EXISTS question;
 DROP TABLE IF EXISTS quiz;
 DROP TABLE IF EXISTS user_answer;
+DROP TABLE IF EXISTS subscription;
 
 -- Question is not connected to quiz directly, question will be rather random for the quiz
 CREATE TABLE question
@@ -52,3 +53,11 @@ CREATE TABLE user_answer
     answer_text    VARCHAR,
     correct        BOOLEAN
 );
+
+CREATE TABLE subscription
+(
+    subscription_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name            VARCHAR,
+    email           VARCHAR,
+    active          BOOLEAN
+)

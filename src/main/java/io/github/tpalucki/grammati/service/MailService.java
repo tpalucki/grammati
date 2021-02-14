@@ -1,6 +1,6 @@
 package io.github.tpalucki.grammati.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -10,18 +10,24 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class MailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
-    public void sendConfirmationEmail(String email) {
+    void sendSubscriptionConfirmationl(String email, String name) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("noreply@grammati.com");
         message.setTo(email);
-        message.setSubject("Grammati: Please confirm your subscription");
-        message.setText("Thanks for subscribing to Grammati. From now you will be receiving daily english questions. To confirm this subscription please click below:\nConfirm\nGrammati Team");
+        message.setSubject("Confirm your subscription for Gramilka");
+        message.setText(
+                "Hi " + name + "!\n" +
+                        "Thanks for subscribing to Gramilka.\n" +
+                        "From now on you will be receiving daily english questions.\n" +
+                        "To confirm this subscription please click below:\n" +
+                        "Confirm\n" +
+                        "\n" +
+                        "Gramilka Team");
 
         mailSender.send(message);
     }
@@ -49,6 +55,7 @@ public class MailService {
         helper.setTo("tpalucki@protonmail.com");
         helper.setBcc("tpalucki@gmail.com");
         helper.setValidateAddresses(true);
+        helper.setText("Jak się masz? to jest pierwszy email.\nTomek");
 
         mailSender.send(mimeMessage);
     }
