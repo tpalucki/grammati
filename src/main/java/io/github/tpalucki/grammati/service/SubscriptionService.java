@@ -20,7 +20,9 @@ public class SubscriptionService {
     public SubscriptionForm create(SubscriptionForm subscriptionForm) {
         log.info("Creating subscription for {} {}", subscriptionForm.getName(), subscriptionForm.getEmail());
 
-        subscriptionForm.setReference(referenceGenerator.generate());
+        String reference = referenceGenerator.generate();
+        log.info("Created subscription reference: {}", reference);
+        subscriptionForm.setReference(reference);
         var newSubscription = subscriptionRepository.save(subscriptionForm);
 
         mailService.sendSubscriptionConfirmationl(subscriptionForm.getEmail(), subscriptionForm.getName());

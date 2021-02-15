@@ -24,7 +24,7 @@ public class MailConfig {
 
     @Bean
     public ReferenceGenerator referenceGenerator() {
-        return new ReferenceGenerator();
+        return new ReferenceGenerator(20, true, true);
     }
 
 }
