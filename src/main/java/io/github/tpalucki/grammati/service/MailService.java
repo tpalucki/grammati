@@ -25,7 +25,7 @@ public class MailService {
     private final Parser markdownParser;
     private final HtmlRenderer markdownHtmlRenderer;
 
-    void sendSubscriptionConfirmationl(String email, String name) {
+    void sendSubscriptionConfirmation(String email, String name, String confirmUrl) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
 
@@ -35,7 +35,7 @@ public class MailService {
             helper.setTo(email);
             helper.setValidateAddresses(true);
 
-            String htmlMessage = provideHtmlMessage(name);
+            String htmlMessage = provideHtmlMessage(name, confirmUrl);
             helper.setText(htmlMessage, true);
 
             mailSender.send(mimeMessage);
@@ -44,11 +44,11 @@ public class MailService {
         }
     }
 
-    private String provideHtmlMessage(String name) throws IOException {
+    private String provideHtmlMessage(String name, String confirmUrl) throws IOException {
         String tempalate = this.getClass().getClassLoader().getResource("./templates/subscriptionConfirmation.md").getFile();
 
         String templateContent = Files.readString(Paths.get(tempalate));
-        templateContent = templateContent.replace("{{name}}", name);
+        templateContent = templateContent.replace("{{name}}", name).replace("{{confirmationLink}}", confirmUrl);
 
         Node document = markdownParser.parse(templateContent);
         return markdownHtmlRenderer.render(document);

@@ -15,6 +15,11 @@ public class AppConfig implements WebMvcConfigurer {
     @Value("${app.title}")
     private String appTitle;
 
+    @Value("${app.client.url}")
+    private String clientUrl;
+    @Value("${app.client.subscription.confirm.path}")
+    private String subscriptionConfirmPath;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
