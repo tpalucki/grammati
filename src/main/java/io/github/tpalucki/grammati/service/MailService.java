@@ -5,7 +5,6 @@ import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Node;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class MailService {
     private final Parser markdownParser;
     private final HtmlRenderer markdownHtmlRenderer;
 
-    void sendSubscriptionConfirmation(String email, String name, String confirmUrl) {
+    public void sendSubscriptionConfirmation(String email, String name, String confirmUrl) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
 
@@ -35,7 +34,7 @@ public class MailService {
             helper.setTo(email);
             helper.setValidateAddresses(true);
 
-            String htmlMessage = provideHtmlMessage(name, confirmUrl);
+            String htmlMessage = provideHtmlMessage("./templates/subscriptionConfirmation.md", name, confirmUrl);
             helper.setText(htmlMessage, true);
 
             mailSender.send(mimeMessage);
@@ -44,41 +43,34 @@ public class MailService {
         }
     }
 
-    private String provideHtmlMessage(String name, String confirmUrl) throws IOException {
-        String tempalate = this.getClass().getClassLoader().getResource("./templates/subscriptionConfirmation.md").getFile();
+    // TODO refactor - extract common code to a separate method
+    public void sendDailyQuiz(String email, String name, String quizUrl) {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
+
+        try {
+            helper.setFrom("noreply@gramilka.com");
+            helper.setSubject("You daily quiz for practice.");
+            helper.setTo(email);
+            helper.setValidateAddresses(true);
+
+            String htmlMessage = provideHtmlMessage("./templates/dailyQuiz.md", name, quizUrl);
+            helper.setText(htmlMessage, true);
+
+            mailSender.send(mimeMessage);
+        } catch (MessagingException | IOException e) {
+            log.error("Cannot sent subscription confirmation email");
+        }
+    }
+
+    private String provideHtmlMessage(String template, String name, String link) throws IOException {
+        String tempalate = this.getClass().getClassLoader().getResource(template).getFile();
 
         String templateContent = Files.readString(Paths.get(tempalate));
-        templateContent = templateContent.replace("{{name}}", name).replace("{{confirmationLink}}", confirmUrl);
+        templateContent = templateContent.replace("{{name}}", name).replace("{{link}}", link);
 
         Node document = markdownParser.parse(templateContent);
         return markdownHtmlRenderer.render(document);
     }
 
-    public boolean isOn() {
-        return false;
-    }
-
-    public void sendDailyQuiz(String to, String quizId) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("daily-quiz@grammati.com");
-        message.setTo(to);
-        message.setSubject("Your daily quiz");
-        message.setText("Your daily quiz http://localhost:8080/exercises/" + quizId);
-
-        mailSender.send(message);
-    }
-
-    public void sendSimpleMail() throws MessagingException {
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
-
-        helper.setFrom("tomasz@gramilka.com");
-        helper.setSubject("Welcome");
-        helper.setTo("tpalucki@protonmail.com");
-        helper.setBcc("tpalucki@gmail.com");
-        helper.setValidateAddresses(true);
-        helper.setText("Jak się masz? to jest pierwszy email.\nTomek");
-
-        mailSender.send(mimeMessage);
-    }
 }
