@@ -28,3 +28,6 @@ VALUES (1, 1),
 --        (1, 2),
 --        (1, 3),
 --        (1, 4);
+
+INSERT INTO subscription (name, email, active)
+VALUES ('Tom', 'tpalucki@gmail.com', true);

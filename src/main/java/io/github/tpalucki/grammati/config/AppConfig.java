@@ -19,6 +19,8 @@ public class AppConfig implements WebMvcConfigurer {
     private String clientUrl;
     @Value("${app.client.subscription.confirm.path}")
     private String subscriptionConfirmPath;
+    @Value("${app.client.quiz.path}")
+    private String dailyQuizPath;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
