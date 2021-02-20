@@ -40,7 +40,8 @@ public class Question {
     @JsonIgnore
     private String tipPl;
 
-    private String level;
+    @Enumerated(EnumType.STRING)
+    private Level level;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getTip() {

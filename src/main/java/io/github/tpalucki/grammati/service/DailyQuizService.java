@@ -39,7 +39,7 @@ public class DailyQuizService {
         log.info("Found {} subscriptions for today.", subscriptionsToHandle.size());
 
         Level level = Level.A1;
-        List<Question> allQuestions = questionRepository.findByLevelEquals(level.toString());
+        List<Question> allQuestions = questionRepository.findByLevelEquals(level);
         log.info("Found {} questions on level {}", allQuestions.size(), level);
 
         for (SubscriptionForm subscription : subscriptionsToHandle) {
