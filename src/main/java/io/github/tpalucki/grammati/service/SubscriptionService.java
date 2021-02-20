@@ -1,7 +1,7 @@
 package io.github.tpalucki.grammati.service;
 
 
-import io.github.tpalucki.grammati.config.AppConfig;
+import io.github.tpalucki.grammati.component.ClientPathProvider;
 import io.github.tpalucki.grammati.domain.SubscriptionForm;
 import io.github.tpalucki.grammati.repository.SubscriptionRepository;
 import io.github.tpalucki.grammati.service.generator.ReferenceGenerator;
@@ -14,10 +14,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class SubscriptionService {
 
-    private final AppConfig appConfig;
     private final SubscriptionRepository subscriptionRepository;
     private final MailService mailService;
     private final ReferenceGenerator referenceGenerator;
+    private final ClientPathProvider clientPathProvider;
 
     public SubscriptionForm create(SubscriptionForm subscriptionForm) {
         log.info("Creating subscription for {} {}", subscriptionForm.getName(), subscriptionForm.getEmail());
@@ -27,8 +27,7 @@ public class SubscriptionService {
         subscriptionForm.setReference(reference);
         var newSubscription = subscriptionRepository.save(subscriptionForm);
 
-        // TODO export to client url provider path
-        var confirmationLink = appConfig.getClientUrl() + appConfig.getSubscriptionConfirmPath() + "/" + reference;
+        var confirmationLink = clientPathProvider.provideSubscriptionConfirmationLink(reference);
         log.info("Confirmation link: {}", confirmationLink);
         mailService.sendSubscriptionConfirmation(subscriptionForm.getEmail(), subscriptionForm.getName(), confirmationLink);
 

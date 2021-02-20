@@ -40,6 +40,8 @@ public class Question {
     @JsonIgnore
     private String tipPl;
 
+    private String level;
+
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public String getTip() {
         if (nonNull(tipEng)) {
