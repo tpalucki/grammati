@@ -1,15 +1,18 @@
 version: '3'
 
 services:
-  grammati-frontend-app:
+  gramilka-frontend-app:
     image: frontapp-content-nginx
     container_name: gramilka-frontend
     ports:
       - 80:80
     networks:
       - gramilka-network
+    depends_on:
+      - gramilka-backend-app
+      - gramilka-database
 
-  grammati-backend-app:
+  gramilka-backend-app:
     image: grammati-backend-0.0.3
     container_name: gramilka-backend
     ports:
@@ -25,7 +28,7 @@ services:
   #      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
   gramilka-database:
-    image: postgres:13.1-alpine
+    image: postgres:11-alpine
     container_name: gramilka-database
     ports:
       - 5433:5432
