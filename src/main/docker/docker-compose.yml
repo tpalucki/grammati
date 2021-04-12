@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  grammati-frontend-app:
+    image: frontapp-content-nginx
+    container_name: gramilka-frontend
+    ports:
+      - 80:80
+    networks:
+      - gramilka-network
+
+  grammati-backend-app:
+    image: grammati-backend-0.0.3
+    container_name: gramilka-backend
+    ports:
+      - 8080:80
+    networks:
+      - gramilka-network
+    depends_on:
+      - gramilka-database
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://gramilka-database/gramilka-db
+      - SPRING_DATASOURCE_USERNAME=gramilka
+      - SPRING_DATASOURCE_PASSWORD=gramilka-81253
+  #      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  gramilka-database:
+    image: postgres:13.1-alpine
+    container_name: gramilka-database
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=gramilka
+      - POSTGRES_PASSWORD=gramilka-81253
+      - POSTGRES_DB=gramilka-db
+    networks:
+      - gramilka-network
+
+networks:
+  gramilka-network:
+    driver: overlay
