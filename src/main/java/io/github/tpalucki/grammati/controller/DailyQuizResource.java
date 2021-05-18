@@ -1,4 +1,4 @@
-package io.github.tpalucki.grammati.resource;
+package io.github.tpalucki.grammati.controller;
 
 import io.github.tpalucki.grammati.service.DailyQuizService;
 import lombok.RequiredArgsConstructor;

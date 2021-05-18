@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @Getter
-@PropertySource("application.properties")
+@PropertySource("classpath:application.properties")
 public class AppConfig implements WebMvcConfigurer {
 
     @Value("${app.title}")

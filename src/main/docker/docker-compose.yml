@@ -2,7 +2,7 @@ version: '3'
 
 services:
   gramilka-frontend-app:
-    image: frontapp-content-nginx
+    image: io.github.tpalucki/gramilka-frontend:0.0.3
     container_name: gramilka-frontend
     ports:
       - 80:80
@@ -13,7 +13,7 @@ services:
       - gramilka-database
 
   gramilka-backend-app:
-    image: grammati-backend-0.0.3
+    image: io.github.tpalucki/gramilka-backend:0.0.3
     container_name: gramilka-backend
     ports:
       - 8080:80
@@ -25,7 +25,6 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://gramilka-database/gramilka-db
       - SPRING_DATASOURCE_USERNAME=gramilka
       - SPRING_DATASOURCE_PASSWORD=gramilka-81253
-  #      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
   gramilka-database:
     image: postgres:11-alpine
@@ -38,6 +37,8 @@ services:
       - POSTGRES_DB=gramilka-db
     networks:
       - gramilka-network
+    volumes:
+      - /var/local/gramilka/database:/var/lib/postgresql/data
 
 networks:
   gramilka-network:
