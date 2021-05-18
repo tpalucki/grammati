@@ -1,21 +1,12 @@
 package io.github.tpalucki.grammati.service.generator;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
+@Slf4j
 class ReferenceGeneratorTest {
-
-    @Test
-    void givenUsingApache_whenGeneratingRandomStringBounded_thenCorrect() {
-        int length = 10;
-        boolean useLetters = true;
-        boolean useNumbers = false;
-        String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
-
-        System.out.println(generatedString);
-    }
 
     @Test
     void shouldGenerateRandom() {
@@ -24,6 +15,6 @@ class ReferenceGeneratorTest {
         String generated = generator.generate();
 
         assertThat(generated).hasSize(24).isNotBlank();
-        System.out.println("generated = " + generated);
+        log.info("generated: {}", generated);
     }
 }
