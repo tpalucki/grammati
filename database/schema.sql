@@ -62,4 +62,4 @@ CREATE TABLE subscription
     active          BOOLEAN,
     reference       VARCHAR,
     created_at       TIMESTAMP
-)
+);
