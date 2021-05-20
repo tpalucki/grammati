@@ -1,7 +1,7 @@
-PUT ./io.github.tpalucki_gramilka-* tmp/
+PUT ./io.github.tpalucki_gramilka-* deployment/
 
-PUT ./docker-compose.yml tmp/
+PUT ./docker-compose.yml deployment/
 
-PUT ./run-deployment.sh tmp/
+PUT ./run-deployment.sh deployment/
 
 EXIT
